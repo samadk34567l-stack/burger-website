@@ -1,0 +1,173 @@
+.menu-sect {
+  padding: 100px 10%;
+  background: #0a0a0f;
+}
+
+.sect-title {
+  text-align: center;
+  font-size: 45px;
+  font-weight: 800;
+  margin-bottom: 60px;
+}
+.sect-title span { color: #ff3b30; }
+
+/* Har row mein 3 cards */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Naye aane wale cards halka sa fade + slide-up ke sath */
+.grid-container .glass-card {
+  animation: trendIn 0.5s ease backwards;
+}
+
+@keyframes trendIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(255,59,48,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none; /* glow layer clicks na roke */
+  z-index: 0;
+}
+
+.glass-card .img-container,
+.glass-card .card-info {
+  position: relative;
+  z-index: 1; /* button glow ke upar rahe */
+}
+
+.glass-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 59, 48, 0.3);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+.glass-card:hover::before { opacity: 1; }
+
+.img-container {
+  height: 220px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.glass-card:hover .img-container img {
+  transform: scale(1.08);
+}
+
+.card-info h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ff3b30;
+}
+
+.add-btn {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  background: #ff3b30;
+  color: white;
+  transform: scale(1.05);
+}
+
+
+/* ---------- View All button ---------- */
+.trend-view-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.trend-view-btn {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #ff3b30;
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.trend-view-btn:hover {
+  background: #ff3b30;
+  box-shadow: 0 8px 25px rgba(255, 59, 48, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Tablet: 2 cards per row */
+@media (max-width: 1000px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+/* Mobile: 1 card per row */
+@media (max-width: 640px) {
+  .menu-sect { padding: 60px 5%; }
+  .sect-title { font-size: 32px; margin-bottom: 35px; }
+  .img-container { height: 200px; }
+  .card-info h3 { font-size: 20px; margin-bottom: 12px; }
+  .price { font-size: 22px; }
+  .add-btn { padding: 10px 16px; }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .trend-view-wrap {
+    margin-top: 35px;
+  }
+}
